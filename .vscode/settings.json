@@ -1,0 +1,35 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "files.autoSave": "off",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+
+    "editor.tabSize": 4,
+    "[yaml]": {
+        "editor.tabSize": 4
+    },
+    "prettier.tabWidth": 4,
+
+    "prettier.jsxSingleQuote": false,
+    "prettier.singleQuote": false,
+    "prettier.semi": true,
+    "prettier.arrowParens": "always",
+    "prettier.jsxBracketSameLine": false,
+    "prettier.printWidth": 130,
+    "prettier.quoteProps": "consistent",
+    "prettier.trailingComma": "none",
+
+    "typescript.updateImportsOnFileMove.enabled": "always"
+}

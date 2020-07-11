@@ -1,0 +1,49 @@
+<car>
+    <brand>ford</brand>
+    <model>mustang<model>
+    <year>1970</year>
+    <price>200</price>
+    <rating>9</rating>
+</car>
+<car>
+    <brand>ford</brand>
+    <model>camaro<model>
+    <year>1990</year>
+    <price>200</price>
+    <rating>6</rating>
+</car>
+<car>
+    <brand>dacia</brand>
+    <model>duster<model>
+    <year>2012</year>
+    <price>50</price>
+    <rating>6</rating>
+</car>
+<car>
+    <brand>dacia</brand>
+    <model>solenza<model>
+    <year>1985</year>
+    <price>10</price>
+    <rating>1</rating>
+</car>
+<car>
+    <brand>tesla</brand>
+    <model>roadster<model>
+    <year>2020</year>
+    <price>200</price>
+    <rating>10</rating>
+</car>
+<car>
+    <brand>dacia</brand>
+    <model>logan<model>
+    <year>2000</year>
+    <price>50</price>
+    <rating>4</rating>
+</car>
+<car>
+    <brand>bugatti</brand>
+    <model>veyron<model>
+    <year>2020</year>
+    <price>500</price>
+    <rating>10</rating>
+</car>
