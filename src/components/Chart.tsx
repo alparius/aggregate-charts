@@ -207,7 +207,7 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
                         </List>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color="violet" onClick={() => setInfoOpen(false)} inverted content="Back" />
+                        <Button onClick={() => setInfoOpen(false)} inverted content="Back" />
                     </Modal.Actions>
                 </Modal>
                 <br />

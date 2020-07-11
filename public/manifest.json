@@ -1,7 +1,7 @@
 {
     "short_name": "Aggregate-charts",
     "name": "Aggregate-charts - group and visualize your data to bring the maximum out of it",
-    "description": "A tool that can process JSON and CSV (exportable from spreadsheets or excel) data files, identifying numerical attributes and grouping the given data by the selected column to display the size of these groups or different averages related to it",
+    "description": "A tool that can process JSON and CSV (exportable from spreadsheets or excel) data files. It identifies numerical attributes and groups the given data by the selected column. The sizes of these groups or different averages related to it can be displayed on the charts.",
     "icons": [
         {
             "src": "favicon.ico",

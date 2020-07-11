@@ -93,8 +93,8 @@ const PreChart: React.FC = () => {
             <br />
             <Header as="h2">0. What is this?</Header>
             <p>
-                A tool that can process JSON and CSV (exportable from spreadsheets or excel) data files, identifying numerical attributes and grouping
-                the given data by the selected column to display the size of these groups or different averages related to it
+                A tool that can process JSON and CSV (exportable from spreadsheets or excel) data files. It identifies numerical attributes and groups
+                the given data by the selected column. The sizes of these groups or different averages related to it can be displayed on the charts.
             </p>
 
             <br />

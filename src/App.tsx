@@ -16,7 +16,7 @@ function App() {
                                         Aggregate-charts
                                     </Header>
                                     <p style={{ fontSize: "1.5em", textAlign: "right" }}>
-                                        a.k.a. Group and Visualize your data to bring the maximum out of it
+                                        Group and Visualize your data to bring the maximum out of it
                                     </p>
                                 </Grid.Column>
                             </Grid.Row>
