@@ -55,6 +55,41 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
 
     const [infoOpen, setInfoOpen] = useState(false);
 
+    const saveAs = (uri: string, filename: string) => {
+        var link = document.createElement("a");
+
+        if (typeof link.download === "string") {
+            link.href = uri;
+            link.download = filename;
+            document.body.appendChild(link); //Firefox requires the link to be in the body
+            link.click(); //simulate click
+            document.body.removeChild(link); //remove the link when done
+        } else {
+            window.open(uri);
+        }
+    };
+
+    const printDocument = (image: boolean = false) => {
+        window.scrollTo(0, 0);
+        let input = document.getElementById("divToPrint");
+
+        html2canvas(input!, { height: 500 }).then((canvas) => {
+            const imgData = canvas.toDataURL("image/png");
+
+            const now = new Date();
+            const fileName = `AggregateCharts_${now.getFullYear()}-${now.getMonth()}-${now.getDay()}_${now.getHours()}-${now.getMinutes()}`;
+            if (image) {
+                saveAs(canvas.toDataURL(), `${fileName}.png`);
+            } else {
+                const pdf = new jsPDF();
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                pdf.addImage(imgData, "JPEG", 5, 5, pdfWidth - 5, pdfHeight - 5);
+                pdf.save(`${fileName}.pdf`);
+            }
+        });
+    };
+
     if (showError) {
         return <Segment>Error.</Segment>;
     } else if (loading) {
@@ -68,15 +103,17 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
 
         upData.forEach((p: any) => {
             if (p[xAxis] !== undefined && p[xAxis] !== 0 && p[xAxis] !== "") {
-                usedDataSize += 1;
                 const match = chartData.filter((item: IChartData) => item.key === p[xAxis]);
                 // new entry or incrementing an existing one
-                if (match.length === 0) {
-                    chartDatum = { key: p[xAxis], data: p[yAxis], counter: 1 };
-                    chartData.push(chartDatum);
-                } else {
-                    match[0].data += p[yAxis];
-                    match[0].counter += 1;
+                if (p[yAxis] !== undefined || yAxis === "MyCount") {
+                    usedDataSize += 1;
+                    if (match.length === 0) {
+                        chartDatum = { key: p[xAxis], data: p[yAxis], counter: 1 };
+                        chartData.push(chartDatum);
+                    } else {
+                        match[0].data += p[yAxis];
+                        match[0].counter += 1;
+                    }
                 }
             }
         });
@@ -116,7 +153,6 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
         }
 
         //TODO boolean support
-        // let colorScheme = customColorSchemes.Meine;
         // // boolean main axis
         // if (xAxis.startsWith("is")) {
         //     colorScheme = customColorSchemes.MeineBoolean;
@@ -135,47 +171,6 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
         if (chartName === "pie") {
             chartData.forEach((item: IChartData) => (item.key = item.key + ": " + item.data));
         }
-
-        const saveAs = (uri: string, filename: string) => {
-            var link = document.createElement("a");
-
-            if (typeof link.download === "string") {
-                link.href = uri;
-                link.download = filename;
-
-                //Firefox requires the link to be in the body
-                document.body.appendChild(link);
-
-                //simulate click
-                link.click();
-
-                //remove the link when done
-                document.body.removeChild(link);
-            } else {
-                window.open(uri);
-            }
-        };
-
-        const printDocument = (image: boolean = false) => {
-            window.scrollTo(0, 0);
-            let input = document.getElementById("divToPrint");
-
-            html2canvas(input!, { height: 500 }).then((canvas) => {
-                const imgData = canvas.toDataURL("image/png");
-
-                const now = new Date();
-                const fileName = `AggregateCharts_${now.getFullYear()}-${now.getMonth()}-${now.getDay()}_${now.getHours()}-${now.getMinutes()}`;
-                if (image) {
-                    saveAs(canvas.toDataURL(), `${fileName}.png`);
-                } else {
-                    const pdf = new jsPDF();
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-                    pdf.addImage(imgData, "JPEG", 5, 5, pdfWidth - 5, pdfHeight - 5);
-                    pdf.save(`${fileName}.pdf`);
-                }
-            });
-        };
 
         return (
             <>
@@ -305,9 +300,10 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
                         </Form.Field>
                     </Form.Group>
                 </Form>
+
                 {chartData.length === 0 ? (
                     <Header as="h4">
-                        <b>No results were found for your search. Try another configration or widen the search criterias.</b>
+                        <b>No data to show. Try another configration.</b>
                     </Header>
                 ) : (
                     // ) : chartName === "line" && !xAxis.includes("Year") ? (

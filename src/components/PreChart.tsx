@@ -54,7 +54,7 @@ const PreChart: React.FC = () => {
 
                 objs.forEach((o: any) => {
                     Object.entries(o).forEach((field: [string, any], index: number) => {
-                        if (!Number(field[1])) {
+                        if (!Number(field[1]) && field[1] !== "" && Number(field[1]) !== 0) {
                             isNumeric[index] = false;
                         }
                     });
@@ -69,7 +69,11 @@ const PreChart: React.FC = () => {
                 objs.forEach((o: any) => {
                     Object.entries(o).forEach((field: [string, any], index2: number) => {
                         if (isNumeric[index2]) {
-                            o[field[0]] = Number(field[1]);
+                            if (field[1] === "") {
+                                o[field[0]] = undefined;
+                            } else {
+                                o[field[0]] = Number(field[1]);
+                            }
                         }
                     });
                 });
