@@ -364,7 +364,10 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
                                             <LinearXAxis
                                                 type={chartExtra ? "category" : "value"}
                                                 tickSeries={
-                                                    <LinearXAxisTickSeries tickSize={50} label={<LinearXAxisTickLabel fontSize={fontSize} />} />
+                                                    <LinearXAxisTickSeries
+                                                        tickSize={chartExtra ? 10 : 50}
+                                                        label={<LinearXAxisTickLabel fontSize={fontSize} />}
+                                                    />
                                                 }
                                             />
                                         }
@@ -372,7 +375,10 @@ const Chart: React.FC<IChartProps> = (props: IChartProps) => {
                                             <LinearYAxis
                                                 type={chartExtra ? "value" : "category"}
                                                 tickSeries={
-                                                    <LinearYAxisTickSeries tickSize={50} label={<LinearYAxisTickLabel fontSize={fontSize} />} />
+                                                    <LinearYAxisTickSeries
+                                                        tickSize={chartExtra ? 50 : 10}
+                                                        label={<LinearYAxisTickLabel fontSize={fontSize} />}
+                                                    />
                                                 }
                                             />
                                         }
